@@ -1,0 +1,16 @@
+{% load static %}
+{% load extra_filters %}
+
+<div class="d-flex align-items-center">
+    <p class="mod-detail-label me-2">Ratings:</p>
+    <div class="d-flex" style="height: .9rem;">
+        {% for i in '0123456789'|make_list %}
+            {% if forloop.counter|is_even %}
+            <img src="{% static 'icons/star-right.png' %}">
+            {% else %}
+            <img src="{% static 'icons/star-left.png' %}">
+            {% endif %}
+        {% endfor %}
+        <p class="mod-detail-label">&nbsp;({{ mod.ratings_count }})</p>
+    </div>
+</div>

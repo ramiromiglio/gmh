@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="row">
+    {% for mod in object_list %}
+    <div class="col col-md-6 col-xl-4 col-xxl-3 mb-4">
+        {% include "widgets/mod_card.html" %}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

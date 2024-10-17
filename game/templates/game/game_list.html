@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{% comment %}{% endcomment %}
+
+{% if object_list %}
+<div class="row">
+    {% for game in object_list %}
+    <div class="col-2">
+        <a href="{% url 'game-mods-list' game.pk %}" class="text-decoration-none">
+            <div class="border border-1 mod-border-color h-100">
+                <img class="w-100 m-0" src="{{ game.icon.url }}">
+                <p
+                class="text-center"
+                style="
+                    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                    font-size: .9rem;
+                    vertical-align: middle;
+                    margin: .5rem;
+                    color:#eaeaea;">
+                    {{ game.title }}
+                </p>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

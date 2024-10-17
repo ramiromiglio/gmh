@@ -1,0 +1,126 @@
+:root
+{
+    --text-color: #adadad;
+}
+
+.background::before
+{
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    content: url('/static/images/bg_index.jpg');
+    z-index: -1;
+}
+
+.body-wrapper
+{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.mod-description
+{
+    margin-top: .5rem;
+    font-size: 1rem;
+    color:grey;
+}
+
+/****** MOD LIST ******/
+
+.mod-list-title
+{
+    font-size: 1.1rem;
+    font-weight: normal;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #e8e8e8;
+    margin: 0;
+    margin-bottom: .4rem;
+}
+.mod-list-label
+{
+    font-size: .8rem;
+    color: var(--text-color);
+    padding: 0;
+    margin: 0;
+    align-self: center;
+}
+.mod-list-desc
+{
+    margin-top: 1rem !important;
+    font-size: .8rem;
+    color: #e8e8e8;
+    padding: 0;
+    margin: 0;
+    align-self: center;
+    text-overflow: ellipsis;
+}
+
+/****** MOD DETAIL ******/
+
+.mod-detail-title
+{
+    font-size: 1.6rem;
+    color: #e8e8e8;
+    margin: 0;
+}
+.mod-detail-short-description
+{
+    font-size: .85rem;
+    color: var(--text-color);
+    margin-top: 1rem;
+}
+.mod-detail-description
+{
+    font-size: .85rem;
+    color: var(--text-color);
+    margin-top: 1rem;
+    text-align: center;
+}
+.mod-detail-label
+{
+    font-size: .8rem;
+    color: var(--text-color);
+    padding: 0;
+    margin: 0;
+    align-self: center;
+}
+.mod-border-color
+{
+    border-color: #6b6b6b !important;
+}
+
+.mod-detail-category::before
+{
+    background-image: url('/static/icons/category-icon.png');
+    background-size: 12px 12px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    content: '';
+    vertical-align: middle;
+    margin: .3rem;
+    filter: brightness(.1);
+}
+.mod-detail-category
+{
+    background-color: #676767;
+    color: #111111;
+    font-size: .8rem;
+    font-weight: 500;
+    border-top-left-radius: .4rem;
+    border-bottom-left-radius: .4rem;
+    vertical-align: middle;
+    padding-right: .5rem;
+    margin: 0;
+}
+hr
+{
+    color: white !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+}

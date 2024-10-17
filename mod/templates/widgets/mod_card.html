@@ -1,0 +1,26 @@
+{% load extra_filters %}
+
+<div class="w-100 h-100 border border-1 overflow-hidden pb-2" style="border-color: #6b6b6b !important;">
+    <img class="w-100" src="{{ mod.icon.url }}" style="aspect-ratio: 1/.6;">
+    <div class="p-2">
+        <a href="{% url 'mod-detail' mod.pk %}" class="text-decoration-none">
+            <p class="mod-list-title">{{ mod.title }}</p>
+        </a>
+        {% include "widgets/mod_ratings.html" %}
+        <p class="mod-list-label">Author: <a href="#">{{ mod.author }}</a></p>
+        <p class="mod-list-label">
+            Size:&nbsp;&nbsp;<span style="font-weight: bold;">{{ mod.data_size|pretty_size }}</span>
+        </p>
+
+        <div style="height: 4.9rem; overflow: hidden;">
+            {% if mod.short_desc %}
+            <p class="mod-list-desc">{{ mod.short_desc }}</p>
+            {% else %}
+            <p class="mod-list-desc">{{ mod.desc }}</p>
+            {% endif %}
+        </div>
+    </div>
+    <a href="{% url 'mod-detail' mod.pk %}" class="d-block btn btn-sm btn-primary mx-2">
+        Ver mas
+    </a>
+</div>

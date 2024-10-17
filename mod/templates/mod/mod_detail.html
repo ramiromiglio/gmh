@@ -1,0 +1,94 @@
+{% extends "base_generic.html" %}
+{% load extra_filters %}
+{% load static %}
+
+{% block content %}
+<div class="bg-dark">
+    <div class="p-3">
+        <div class="row mb-3">
+            <div class="col-4">
+                <img src="{{ object.icon.url }}" class="w-100 border border-1 rounded-2" style="
+                    border-color: grey !important;
+                    aspect-ratio: 16/9;
+                ">
+            </div>
+            <div class="col-8">
+                <div class="d-flex">
+                    <p class="mod-detail-title">{{ object.title }}</p>
+                    <div class="d-flex align-items-center gap-2 ps-4" style="position: relative; top: .2rem;">
+                        {% for categ in object.get_some_categories %}
+                        <p class="mod-detail-category">{{categ|upper}}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                {% include "widgets/mod_ratings.html" %}
+
+                <p class="mod-detail-label">Base game:&nbsp;
+                    <a href="{% url 'game-mods-list' mod.related_game.pk %}">{{ mod.related_game.title }}</a>
+                </p>
+                <p class="mod-detail-label">Author:&nbsp;
+                    <a href="#">{{ mod.author }}</a>
+                </p>
+                <p class="mod-detail-short-description">{{ object.short_desc }}</p>
+                <div class="d-flex justify-content-between">
+                    <p class="mod-detail-label">
+                        Size:&nbsp;&nbsp;<span style="font-weight: bold;">{{ object.data_size|pretty_size }}</span>
+                    </p>
+                    <p class="mod-detail-label">
+                        Downloads:&nbsp;&nbsp;<span style="font-weight: bold;">{{ object.downloads_count }}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        {% include "widgets/image_preview_modal.html" %}
+
+        <script>
+            function preview_image(a) {
+                const modalDOM = document.getElementById('image-preview-modal');
+                const img = modalDOM.querySelector('img');
+                img.src = a.querySelector('img').src;
+                const modal = bootstrap.Modal.getOrCreateInstance(modalDOM);
+                modal.show();
+            }
+        </script>
+
+        <div class="row mb-3 mt-3">
+            {% for image in object.modimage_set.all %}
+            <div class="col-4">
+                <a href="#" onclick="preview_image(this)">
+                    <img src="{{ image.image.url }}" class="w-100" style="box-shadow: .2rem .2rem 0 #343434">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="row">
+            <div class="col-8">
+                <p class="mod-detail-description">{{ object.desc }}</p> 
+            </div>
+            <div class="col-4">
+                <table class="table table-sm table-dark">
+                    <tr>
+                        <th>FILE</th>
+                        <th>SIZE</th>
+                    </tr>
+                    {% for file in object.modfile_set.all %}
+                    <tr>
+                        <td>{{ file.original_file_name }}</td>
+                        <td>{{ file.file.size|pretty_size }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <a href="{% url 'mod-download' object.pk %}" class="btn btn-secondary w-100">
+                    Download .ZIP
+                </a>
+            </div>
+        </div>        
+    </div>
+</div>
+
+{% endblock %}
